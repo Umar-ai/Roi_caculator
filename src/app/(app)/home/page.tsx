@@ -3,6 +3,7 @@
 import React from 'react'
 import { useSession } from 'next-auth/react'
 import { User } from 'next-auth'
+import HeroSection from '@/components/HeroSection'
 
 function Page() {
   const { data: session, status } = useSession()
@@ -17,7 +18,7 @@ function Page() {
     // The CSS will now be used when the component renders with data
     return (
       <div>
-        <p>I am the home page, {user.name}</p>      
+        <HeroSection/>
       </div>
     )
   }

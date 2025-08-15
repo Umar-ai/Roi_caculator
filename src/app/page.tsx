@@ -5,23 +5,18 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { useEffect } from "react";
 export default function Home() {
-  const router=useRouter()
-  const {data:session,status}=useSession()
-  useEffect(()=>{
-    if(status=='authenticated'){
-      router.replace('/home')
-    }
-    else{
-      router.replace('/sign-in')
-    }
-  },[session,router])
-  const signingIn = async () => {
-    const response = await signIn("google",{redirect:false});
-    
-  };
+  // useEffect(()=>{
+  //   if(status=='authenticated'){
+  //     router.replace('/home')
+  //   }
+  //   else{
+  //     router.replace('/sign-in')
+  //   }
+  // },[session,router])
+ 
   return (
     <main>
-      <button onClick={signingIn}>SignIn</button>
+      <button>Welcome</button>
     </main>
   );
 }
