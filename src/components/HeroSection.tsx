@@ -18,14 +18,13 @@ function HeroSection() {
             >Future of Refurbishment</h1>
             <p
             className="mt-4 font-normal text-base md:text-lg text-neutral-300 max-w-lg mx-auto"
-            >Dive into our comprehensive music courses and transform your musical journey today. Whether you're a beginner or looking to refine your skills, join us to unlock your true potential.</p>
+            >Dive in to our app that helps refurbishers make a quick, data-driven decision on whether to sell an item in used condition or invest in refurbishing for a potentially higher return.</p>
             <div className="mt-4">
-                <Link href={"/courses"}>
+                <Link href={"/feature"}>
                     <button
-                    // borderRadius="1.75rem"
-                    className="  text-white  px-4 py-1 mt-1 text-xl font-bold border-2 rounded-xl  border-white "
+                    className="  text-white  px-4 py-2 mt-2 text-xl font-bold border-2 rounded-xl  border-white "
                     >
-                    Explore courses
+                    Explore Feature
                     </button>
                 </Link>
             </div>

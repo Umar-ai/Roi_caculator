@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/button"
 import { useEffect } from "react";
+import Link from "next/link";
 import {
   Card,
   CardAction,
@@ -31,20 +32,32 @@ export default function page() {
   };
   return (
   
-     
-       <Card className="w-full max-w-sm">
+     <div className="ml-[34rem] mt-[3rem] ">
+
+       <Card className="w-full max-w-sm ">
       <CardHeader>
         <CardTitle>Login to your account</CardTitle>
         <CardDescription>
           Enter your email below to login to your account
         </CardDescription>
         <CardAction>
-          <Button variant="link">Sign Up</Button>
+          <Link href={'/login'}>
+          <Button  variant="link">Login</Button>
+          </Link>
         </CardAction>
       </CardHeader>
       <CardContent>
         <form>
           <div className="flex flex-col gap-6">
+            <div className="grid gap-2">
+              <Label htmlFor="email">Username</Label>
+              <Input
+                id="username"
+                type="text"
+                placeholder="Sabir shakir"
+                required
+              />
+            </div>
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -59,20 +72,21 @@ export default function page() {
                 <Label htmlFor="password">Password</Label>
                 
               </div>
-              <Input id="password" type="password" required />
+              <Input id="password" type="password" placeholder="******" required />
             </div>
           </div>
         </form>
       </CardContent>
       <CardFooter className="flex-col gap-2">
         <Button type="submit" className="w-full">
-          Login
+          SignUp
         </Button>
         <Button onClick={signingIn} variant="outline" className="w-full">
-          Login with Google
+          Signup with Google
         </Button>
       </CardFooter>
     </Card>
+     </div>
     
   );
 }

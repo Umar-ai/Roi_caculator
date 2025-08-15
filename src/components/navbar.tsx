@@ -20,10 +20,11 @@ function Navbar() {
           < >
             
           <div className='flex justify-center items-center gap-[50px]'>
-
-            <button  className=" md:w-auto text-slate-100 " >
+             <Link href={'/feature'}> 
+            <button  className=" md:w-auto hover:underline text-slate-100 " >
               Feature
             </button>
+             </Link> 
             <button  className="w-full md:w-auto text-slate-100 " >
               Pricing
             </button>

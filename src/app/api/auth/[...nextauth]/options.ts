@@ -6,6 +6,8 @@ import { dbConnect } from "@/lib/dbConnect";
 export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
+    maxAge:60*60
+    // maxAge: 60 * 60,
   },
   providers: [
     GoogleProvider({
@@ -35,8 +37,9 @@ export const authOptions: NextAuthOptions = {
       }
       return true;
     },
-    async jwt({ token, user }) {
+    async jwt({ token, user,account }) {
       if (user) {
+        console.log("Access token expiry",account?.expires_at)
         token._id = user._id?.toString(); // Convert ObjectId to string
         token.isVerified = user.isVerified;
         token.isAcceptingMessages = user.isAcceptingMessages;
