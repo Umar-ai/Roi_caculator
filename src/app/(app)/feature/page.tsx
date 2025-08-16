@@ -1,76 +1,108 @@
 "use client"
-
-import React from 'react'
-import Image from "next/image";
+import React, { useState } from 'react'
 import { useSession } from "next-auth/react";
+import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/button"
 import { useEffect } from "react";
+import {Loader2}  from 'lucide-react'
 import Link from "next/link";
 import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
 import { Input } from "@/components/ui/input"
+import * as z from 'zod'
 import { Label } from "@/components/ui/label"
+import {useForm} from 'react-hook-form'
+import { roiSchema } from '@/schemas/roiform.schema';
+
 
 function page() {
-  return (
-    <div >
-       <div className="ml-[34rem] mt-[3rem] ">
+  const [isFormsubmitting,setisformsubmitting]=useState(false)
+  const [isFormsubmitted,setisformsubmitted]=useState(false)
 
-       <Card className="w-full max-w-sm">
-      <CardHeader>
-        <CardTitle className='text-2xl'>Roi Calculator</CardTitle>
-        <CardDescription>
-          Enter the following to get best advice
-        </CardDescription>
-       
-      </CardHeader>
-      <CardContent>
-        <form>
-          <div className="flex flex-col gap-6">
-            <div className="grid gap-2">
-              <Label htmlFor="email">Device name</Label>
-              <Input
-                id="devicename"
-                type="text"
-                placeholder="Iphone15"
-                required
-              />
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center">
-                <Label htmlFor="password">Defects</Label>
-                
-              </div>
-              <Input id="defects" type="text" placeholder='e.g:borken screen,bad battery' required />
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center">
-                <Label htmlFor="password">Price</Label>
-                
-              </div>
-              <Input id="price" type="number" placeholder='e.g:222$' required />
-            </div>
-          </div>
-        </form>
-      </CardContent>
-      <CardFooter className="flex-col gap-2">
-        <Button type="submit" className="w-full" variant={'outline'}>
-          Submit
-        </Button>
-        
-      </CardFooter>
-    </Card>
-     </div>
+  const form=useForm<z.infer<typeof roiSchema>>({
+    resolver:zodResolver(roiSchema),
+    defaultValues:{
+      devicename:"",
+      defects:"",
+      devicePrice:0
+    }
+  })
+  const roiCaluclation=async()=>{
+    try {
+      // const response=await axios.post()
+
+    } catch (error) {
+      
+    }
+  }
+  return (
+ <div className='flex justify-center items-center min-h-screen '>
+<div className='w-full max-w-md p-8 space-y-8 border-2  rounded-lg mb-22 shadow-md'>
+<div className='text-center'>
+<h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl ">
+            Roi Calculator
+          </h1>
+</div>
+<Form {...form}>
+  <form onSubmit={form.handleSubmit(roiCaluclation)}>
+    <FormField
+    name='devicename'
+    control={form.control}
+    render={({field})=>(
+      <FormItem>
+        <FormLabel className='font-bold mt-1'>Device Name</FormLabel>
+          <Input
+          {...field}
+          />
+      </FormItem>
+    )}
+    />
+    <FormField
+    name='defects'
+    control={form.control}
+    render={({field})=>(
+      <FormItem>
+        <FormLabel className='font-bold mt-3'>Defects</FormLabel>
+        <Input
+        {...field}
+        />
+      </FormItem>
+    )}
+    />
+    <FormField
+    name='devicePrice'
+    control={form.control}
+    render={({field})=>(
+
+      <FormItem>
+        <FormLabel className='font-bold mt-3'>Device price</FormLabel>
+        <Input
+        {...field}
+        />
+      </FormItem>
+    )}
+    />
+    <div>
+      <Button className='w-full mt-[3rem] bg-white px-2 py-1 text-black font-bold text-xl'   type='submit' disabled={isFormsubmitting}>
+      {isFormsubmitting?(
+      <>
+      <Loader2 className='mr-2 h-4 w-4 animate-spin'/>
+      Please wait
+      </>
+    ):("Submit")}
+      </Button>
     </div>
+  </form>
+</Form>
+</div>
+ </div>
   )
 }
 
