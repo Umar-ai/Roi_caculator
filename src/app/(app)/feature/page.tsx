@@ -15,7 +15,7 @@ import {useForm} from 'react-hook-form'
 import { roiSchema } from '@/schemas/roiform.schema';
 
 
-export function FeatureForm() {
+export default function FeatureForm() {
   const [isFormsubmitting,setisformsubmitting]=useState(false)
 
   const form=useForm<z.infer<typeof roiSchema>>({
