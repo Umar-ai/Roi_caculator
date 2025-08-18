@@ -8,30 +8,39 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage
 } from '@/components/ui/form';
+import { useRouter } from 'next/navigation'
 import { Input } from "@/components/ui/input"
 import * as z from 'zod'
 import {useForm} from 'react-hook-form'
 import { roiSchema } from '@/schemas/roiform.schema';
+import axios from 'axios'
 
 
 export default function FeatureForm() {
   const [isFormsubmitting,setisformsubmitting]=useState(false)
-
+  const router=useRouter()
   const form=useForm<z.infer<typeof roiSchema>>({
     resolver:zodResolver(roiSchema),
     defaultValues:{
-      devicename:"",
-      defects:"",
-      devicePrice:0
+     Device_Model:"",
+     Defects:"",
+     device_Price:""
     }
   })
-  const roiCaluclation=async()=>{
+  const roiCaluclation=async(data:z.infer<typeof roiSchema>)=>{
     try {
       setisformsubmitting(true)
+      const response=await axios.post(`https://jadoon.xyz/webhook/1ffcb5ca-9ef2-4d2b-962e-2a0d1b5da4f7`,data)
+        if(response){
+          console.log(response.data)
+           const htmlResponse = response.data;
+      const encodedHtml = encodeURIComponent(htmlResponse); 
+      router.push(`/feature-output?html=${encodedHtml}`);
+        }
       setisformsubmitting(false)
 
-      // const response=await axios.post()
 
     } catch (error) {
       console.log("Something went wrong while connecting to n8n in feature page",error)
@@ -48,7 +57,7 @@ export default function FeatureForm() {
 <Form {...form}>
   <form onSubmit={form.handleSubmit(roiCaluclation)}>
     <FormField
-    name='devicename'
+    name='Device_Model'
     control={form.control}
     render={({field})=>(
       <FormItem>
@@ -56,11 +65,12 @@ export default function FeatureForm() {
           <Input
           {...field}
           />
+          <FormMessage className="text-red-400" />
       </FormItem>
     )}
     />
     <FormField
-    name='defects'
+    name='Defects'
     control={form.control}
     render={({field})=>(
       <FormItem>
@@ -68,11 +78,12 @@ export default function FeatureForm() {
         <Input
         {...field}
         />
+        <FormMessage className="text-red-400" />
       </FormItem>
     )}
     />
     <FormField
-    name='devicePrice'
+    name='device_Price'
     control={form.control}
     render={({field})=>(
 
@@ -81,6 +92,7 @@ export default function FeatureForm() {
         <Input
         {...field}
         />
+        <FormMessage className="text-red-400" />
       </FormItem>
     )}
     />

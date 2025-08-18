@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.log("something went wrong while signingup", error);
     return Response.json(
-      { success: false, message:error },
+      { success: false, message:"something went wrong while signingup" },
       { status: 500 }
     );
   }

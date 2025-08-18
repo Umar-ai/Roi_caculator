@@ -15,6 +15,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import * as z from "zod";
@@ -88,6 +89,7 @@ export default function Loginpage() {
                 <FormItem>
                   <FormLabel className="font-bold mt-1">Email</FormLabel>
                   <Input {...field} />
+                  <FormMessage className="text-red-400" />
                 </FormItem>
               )}
             />
@@ -98,7 +100,8 @@ export default function Loginpage() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="font-bold mt-3">Password</FormLabel>
-                  <Input {...field} />
+                  <Input {...field} type="password" />
+                  <FormMessage className="text-red-400" />
                 </FormItem>
               )}
             />
