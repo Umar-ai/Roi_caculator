@@ -58,12 +58,12 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async signIn({ account, profile }) {
       await dbConnect();
-      if (!profile?.email) {
-        throw new Error("email is required for further process");
-      }
-      const isUserExist = await usermodel.findOne({ email: profile?.email });
-      if (isUserExist) {
-        await usermodel.findOneAndUpdate(
+      console.log(profile)
+      if (profile?.email) {
+        // throw new Error("email is required for further process");
+        const isUserExist = await usermodel.findOne({ email: profile?.email });
+        if (isUserExist) {
+          await usermodel.findOneAndUpdate(
           { email: profile?.email },
           { username: profile?.name }
         );
@@ -75,6 +75,8 @@ export const authOptions: NextAuthOptions = {
           isverified:true
         });
       }
+    }
+    else if(!profile?.email){}
       return true;
     },
     async jwt({ token, user,account }) {

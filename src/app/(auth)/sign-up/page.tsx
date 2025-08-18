@@ -44,7 +44,7 @@ function page() {
     console.log(response);
   };
 
-  const onlogin = async (data: z.infer<typeof signupSchema>) => {
+  const onSignUp = async (data: z.infer<typeof signupSchema>) => {
     try {
       setisformsubmitting(true);
       const response = await axios.post("/api/credentialsSignup", data );
@@ -54,10 +54,10 @@ function page() {
         toast("SignUp Successfull", {
           description: "User SignedUp Successfully",
         });
-        router.replace("/login");
+        router.replace(`verify/${data.email}`);
       }
     } catch (error) {
-      console.log("something went wrong while logging in", error);
+      console.log("something went wrong while signingup in", error);
       const axiosError=error as AxiosError<apiResponse>
       let errorMessage=axiosError.response?.data.message
       toast("Error",{richColors:true,description:errorMessage})
@@ -69,19 +69,20 @@ function page() {
     <div className="flex justify-center items-center min-h-screen ">
       <div className="w-full max-w-md p-8 space-y-8 border-2  rounded-lg mb-22 shadow-md">
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl ">
-            Login In
+          <h1 className="text-4xl font-extrabold tracking-tight  lg:text-5xl ">
+            Sign Up
           </h1>
         </div>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onlogin)}>
+          <form onSubmit={form.handleSubmit(onSignUp)}>
             <FormField
               name="email"
               control={form.control}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="font-bold mt-1">Email</FormLabel>
-                  <Input {...field} />
+                  <Input {...field} name="email"/>
+                  <FormMessage className="text-red-400" />
                 </FormItem>
               )}
             />
@@ -90,8 +91,9 @@ function page() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-bold mt-1">Username</FormLabel>
-                  <Input {...field} />
+                  <FormLabel className="font-bold mt-3">Username</FormLabel>
+                  <Input {...field} name="username" />
+                  <FormMessage className="text-red-400" />
                 </FormItem>
               )}
             />
@@ -102,7 +104,8 @@ function page() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="font-bold mt-3">Password</FormLabel>
-                  <Input {...field} />
+                  <Input {...field} type="password" name="password" />
+                  <FormMessage className="text-red-400" />
                 </FormItem>
               )}
             />
@@ -121,13 +124,13 @@ function page() {
                   "SignUp"
                 )}
               </Button>
-              <Button
+              {/* <Button
                 onClick={signingUp}
                 variant="outline"
                 className="w-full mt-[2rem]"
               >
                 Signup  with Google
-              </Button>
+              </Button> */}
             </div>
           </form>
         </Form>

@@ -49,13 +49,26 @@ function page() {
     try {
       setisformsubmitting(true);
       const response = await signIn("credentials",{redirect:false,identifier:data.identifier,password:data.password});
-      if (response) {
-        setisformsubmitting(false);
-        setisformsubmitted(true);
-        toast("Login Successfull", {
-          description: "User Logged In Successfully",
-        });
-        router.replace("/verify");
+      console.log(response)
+      if (response?.status) {
+        if(response.status>200){
+          console.log("response",response)
+          setisformsubmitting(false);
+            setisformsubmitted(true);
+            toast("Login Error", {
+              description: response.error
+            });
+        }
+          else{
+            setisformsubmitting(false);
+            setisformsubmitted(true);
+            toast("Login Successfull", {
+              description: "User logged in successfully",
+            });
+            router.replace(`/home`);
+          }
+
+        
       }
     } catch (error) {
       console.log("something went wrong while logging in", error);
