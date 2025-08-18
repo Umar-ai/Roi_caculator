@@ -1,9 +1,9 @@
 "use client";
-import Image from "next/image";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
-import { useEffect } from "react";
+// import Image from "next/image";
+// import { useSession } from "next-auth/react";
+// import { useRouter } from "next/navigation";
+// import { signIn } from "next-auth/react";
+// import { useEffect } from "react";
 export default function Home() {
   // useEffect(()=>{
   //   if(status=='authenticated'){

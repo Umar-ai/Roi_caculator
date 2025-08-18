@@ -2,7 +2,6 @@
 
 import React from "react";
 import { useSession } from "next-auth/react";
-import { User } from "next-auth";
 import HeroSection from "@/components/HeroSection";
 import { ClipLoader } from "react-spinners";
 

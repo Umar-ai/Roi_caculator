@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { AiOutlineGoogle } from 'react-icons/ai';
@@ -24,7 +23,6 @@ import { loginInSchema } from "@/schemas/login.Schema";
 
 export default function Loginpage() {
   const router = useRouter();
-  const { data: session, status } = useSession();
   
   const [isFormsubmitting, setisformsubmitting] = useState(false);
 

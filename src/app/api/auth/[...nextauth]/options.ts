@@ -1,4 +1,4 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
+import { NextAuthOptions } from "next-auth";
 import bcrypt from "bcryptjs";
 import GoogleProvider from "next-auth/providers/google";
 import { usermodel } from "@/models/user.model";
@@ -48,7 +48,7 @@ export const authOptions: NextAuthOptions = {
           } else {
             throw new Error('Incorrect password');
           }
-        } catch (err: any) {
+        } catch (err:any) {
           throw new Error(err);
         }
       },
@@ -56,7 +56,7 @@ export const authOptions: NextAuthOptions = {
     
   ],
   callbacks: {
-    async signIn({ account, profile }) {
+    async signIn({  profile }) {
       await dbConnect();
       console.log(profile)
       if (profile?.email) {
@@ -68,7 +68,7 @@ export const authOptions: NextAuthOptions = {
           { username: profile?.name }
         );
       } else {
-        const user = await usermodel.create({
+        await usermodel.create({
           username: profile?.name,
           email: profile?.email,
           signUptype:'Oauth',
