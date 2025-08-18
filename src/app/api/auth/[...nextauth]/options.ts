@@ -48,7 +48,7 @@ export const authOptions: NextAuthOptions = {
           } else {
             throw new Error('Incorrect password');
           }
-        } catch (err:any) {
+        } catch (err: any) {
           throw new Error(err);
         }
       },
@@ -56,7 +56,7 @@ export const authOptions: NextAuthOptions = {
     
   ],
   callbacks: {
-    async signIn({  profile }) {
+    async signIn({ account, profile }) {
       await dbConnect();
       console.log(profile)
       if (profile?.email) {
