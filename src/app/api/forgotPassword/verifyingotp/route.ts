@@ -33,6 +33,7 @@ export async function POST(req: Request) {
         { status: 200 }
       );
   } catch (error) {
+    console.log("something went wrong while verifying",error)
     return Response.json(
       {
         message: "Something went wrong while verifying forgot password otp",

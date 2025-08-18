@@ -34,7 +34,7 @@ export function FeatureForm() {
       // const response=await axios.post()
 
     } catch (error) {
-      
+      console.log("Something went wrong while connecting to n8n in feature page",error)
     }
   }
   return (

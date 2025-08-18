@@ -2,10 +2,8 @@
 import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { useEffect } from "react";
 import { Loader2 } from "lucide-react";
 import { apiResponse } from "@/types/apiResponse";
 import axios from "axios";
@@ -24,11 +22,10 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { signupSchema } from "@/schemas/signup.schema";
 
-function page() {
+export default function SignUppage() {
   const router = useRouter();
   
   const [isFormsubmitting, setisformsubmitting] = useState(false);
-  const [isFormsubmitted, setisformsubmitted] = useState(false);
 
   const form = useForm<z.infer<typeof signupSchema>>({
     resolver: zodResolver(signupSchema),
@@ -39,10 +36,10 @@ function page() {
     },
   });
 
-  const signingUp = async () => {
-    const response = await signIn("google", { redirect: false });
-    console.log(response);
-  };
+  // const signingUp = async () => {
+  //   const response = await signIn("google", { redirect: false });
+  //   console.log(response);
+  // };
 
   const onSignUp = async (data: z.infer<typeof signupSchema>) => {
     try {
@@ -50,7 +47,6 @@ function page() {
       const response = await axios.post("/api/credentialsSignup", data );
       if (response) {
         setisformsubmitting(false);
-        setisformsubmitted(true);
         toast("SignUp Successfull", {
           description: "User SignedUp Successfully",
         });
@@ -59,7 +55,7 @@ function page() {
     } catch (error) {
       console.log("something went wrong while signingup in", error);
       const axiosError=error as AxiosError<apiResponse>
-      let errorMessage=axiosError.response?.data.message
+      const errorMessage=axiosError.response?.data.message
       toast("Error",{richColors:true,description:errorMessage})
       setisformsubmitting(false)
     }
@@ -147,4 +143,3 @@ function page() {
   );
 }
 
-export default page;

@@ -25,8 +25,6 @@ function Page() {
   }
 
   if (status === "authenticated" && session?.user) {
-    const user: User = session.user as User;
-    // The CSS will now be used when the component renders with data
     return (
       <div>
         <HeroSection />

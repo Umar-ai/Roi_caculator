@@ -5,11 +5,9 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { AiOutlineGoogle } from 'react-icons/ai';
-import { useEffect } from "react";
 import { signIn } from "next-auth/react";
 import { Loader2 } from "lucide-react";
 import { apiResponse } from "@/types/apiResponse";
-import axios from "axios";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
 import Link from "next/link";
@@ -18,19 +16,17 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { loginInSchema } from "@/schemas/login.Schema";
 
-function page() {
+export default function Loginpage() {
   const router = useRouter();
   const { data: session, status } = useSession();
   
   const [isFormsubmitting, setisformsubmitting] = useState(false);
-  const [isFormsubmitted, setisformsubmitted] = useState(false);
 
   const form = useForm<z.infer<typeof loginInSchema>>({
     resolver: zodResolver(loginInSchema),
@@ -54,14 +50,12 @@ function page() {
         if(response.status>200){
           console.log("response",response)
           setisformsubmitting(false);
-            setisformsubmitted(true);
             toast("Login Error", {
               description: response.error
             });
         }
           else{
             setisformsubmitting(false);
-            setisformsubmitted(true);
             toast("Login Successfull", {
               description: "User logged in successfully",
             });
@@ -73,7 +67,7 @@ function page() {
     } catch (error) {
       console.log("something went wrong while logging in", error);
       const axiosError=error as AxiosError<apiResponse>
-      let errorMessage=axiosError.response?.data.message
+      const errorMessage=axiosError.response?.data.message
       toast("Error",{richColors:true,description:errorMessage})
       setisformsubmitting(false)
     }
@@ -149,4 +143,3 @@ function page() {
   );
 }
 
-export default page;

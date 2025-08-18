@@ -1,6 +1,6 @@
 import { dbConnect } from "@/lib/dbConnect";
 import { usermodel } from "@/models/user.model";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { sendVerificationEmail } from "@/helper/sendVerificationEmail";
 import bcrypt from "bcryptjs";
 
@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
       100000 + Math.random() * 900000
     ).toString();
     const verificationCodeExpiry = new Date(Date.now() + 3600000);
-    const user = await usermodel.create({
+     await usermodel.create({
       username,
       email,
       ismember: false,
