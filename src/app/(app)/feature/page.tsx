@@ -1,30 +1,22 @@
 "use client"
 import React, { useState } from 'react'
-import { useSession } from "next-auth/react";
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/button"
-import { useEffect } from "react";
 import {Loader2}  from 'lucide-react'
-import Link from "next/link";
 import {
   Form,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from '@/components/ui/form';
 import { Input } from "@/components/ui/input"
 import * as z from 'zod'
-import { Label } from "@/components/ui/label"
 import {useForm} from 'react-hook-form'
 import { roiSchema } from '@/schemas/roiform.schema';
 
 
-function page() {
+export function FeatureForm() {
   const [isFormsubmitting,setisformsubmitting]=useState(false)
-  const [isFormsubmitted,setisformsubmitted]=useState(false)
 
   const form=useForm<z.infer<typeof roiSchema>>({
     resolver:zodResolver(roiSchema),
@@ -36,6 +28,9 @@ function page() {
   })
   const roiCaluclation=async()=>{
     try {
+      setisformsubmitting(true)
+      setisformsubmitting(false)
+
       // const response=await axios.post()
 
     } catch (error) {
@@ -106,4 +101,3 @@ function page() {
   )
 }
 
-export default page
