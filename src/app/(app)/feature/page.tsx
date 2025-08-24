@@ -37,7 +37,7 @@ export default function FeatureForm() {
           console.log(response.data)
            const htmlResponse = response.data;
       const encodedHtml = encodeURIComponent(htmlResponse); 
-      router.push(`/feature-output?html=${encodedHtml}`);
+      router.replace(`/feature-output?html=${encodedHtml}`);
         }
       setisformsubmitting(false)
 
