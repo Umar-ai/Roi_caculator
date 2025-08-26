@@ -120,14 +120,14 @@ export default function Loginpage() {
                   "Login"
                 )}
               </Button>
-              <Button
+              {/* <Button
                 onClick={signingIn}
                 variant="outline"
                 className="w-full mt-[2rem]"
               >
                 <AiOutlineGoogle />
                 Login with Google
-              </Button>
+              </Button> */}
             </div>
           </form>
         </Form>

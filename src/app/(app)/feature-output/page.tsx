@@ -1,18 +1,22 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-
+import { useRouter } from 'next/navigation';
 export default function ResultsPage() {
   const [htmlContent, setHtmlContent] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const router=useRouter()
   // Use a useEffect hook to access window.location.search on the client side
   useEffect(() => {
     try {
       if (typeof window !== 'undefined') {
         const urlParams = new URLSearchParams(window.location.search);
         const html = urlParams.get('html');
+        const problem=443
         if (html) {
           setHtmlContent(decodeURIComponent(html));
+        }
+        else{
+          router.replace(`/feature/${problem}`)
         }
       }
     } catch (error) {
@@ -45,7 +49,7 @@ export default function ResultsPage() {
   }
   
   return (
-    <div className="flex justify-center items-center min-h-screen  bg-white text-white">
+    <div className="flex justify-center  items-center min-h-screen  bg-white text-white">
       <div>
         {/* <h1 className="text-3xl font-bold text-center text-white">Your Results</h1> */}
         <div 
