@@ -58,7 +58,7 @@ export default function Loginpage() {
             toast("Login Successfull", {
               description: "User logged in successfully",
             });
-            router.replace(`/home`);
+            router.replace('/home');
           }
 
         
