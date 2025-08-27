@@ -33,7 +33,7 @@ They provide:
 const rawResult = prompt.pipe(model)
 const result = await rawResult.invoke({cost_price:data.cost_price,refurbished_price:data.refurbished_price,parts_cost:data.parts_cost,used_price:data.used_price});
 const formatPrompt = ChatPromptTemplate.fromTemplate(
-  `Reformat the following analysis into a beautiful, markdown-style report with a clear P&L table and bullet-pointed recommendation do not include content like Here's the reformatting of your analysis into a beautiful, markdown-style report also don't include the word summary in the summary and also convert text colour in to white and make it look modren::\n\n"{raw_summary}"`
+  `Reformat the following analysis into a beautiful, markdown-style report with a clear P&L table and bullet-pointed recommendation do not include content like Here's the reformatting of your analysis into a beautiful, markdown-style report ::\n\n"{raw_summary}"`
 );
 const chain2 = formatPrompt.pipe(model);
 const formattedResult = await chain2.invoke({
@@ -44,7 +44,6 @@ const formattedResult = await chain2.invoke({
     ? formattedResult.content
     : ""
 const html=marked.parse(markdown)
-
     if(!formattedResult){
       return Response.json({success:false,message:"something went wrong while generating the summary"},{status:500}) 
     }
