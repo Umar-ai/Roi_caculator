@@ -39,7 +39,10 @@ export default function FeatureForm() {
         `https://jadoon.xyz/webhook/1ffcb5ca-9ef2-4d2b-962e-2a0d1b5da4f7`,
         data
       );
+
+
       if (response) {
+
         if (
           !response.data ||
           typeof response.data !== "string" ||

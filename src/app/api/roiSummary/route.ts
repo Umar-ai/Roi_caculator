@@ -1,7 +1,6 @@
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { model } from "@/lib/gemini";
 import { marked } from "marked";
-import { SummaryModel } from "@/models/summary.model";
 export async function POST(req:Request){
     const data=await req.json()
     const prompt = ChatPromptTemplate.fromTemplate(
@@ -47,8 +46,6 @@ const html=marked.parse(markdown)
     if(!formattedResult){
       return Response.json({success:false,message:"something went wrong while generating the summary"},{status:500}) 
     }
-    const summary=await SummaryModel.create({summary:html})
-    console.log(summary)
     return Response.json({success:true,message:"result generated",summary:html},{status:200})
 }
 
