@@ -11,13 +11,12 @@ export default function ResultsPage() {
       if (typeof window !== 'undefined') {
         const urlParams = new URLSearchParams(window.location.search);
         const html = urlParams.get('html');
-        const problem=443
         if (html) {
           setHtmlContent(decodeURIComponent(html));
         }
-        else{
-          router.replace(`/feature/${problem}`)
-        }
+        // else{
+        //   router.replace(`/feature/${problem}`)
+        // }
       }
     } catch (error) {
       console.error("Failed to parse URL parameters:", error);

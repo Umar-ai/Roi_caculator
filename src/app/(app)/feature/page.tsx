@@ -50,12 +50,14 @@ export default function FeatureForm() {
           console.log(response.data.data);
           console.log(response.data);
           console.log(response);
+        }else{
+          const htmlResponse = response.data;
+          const encodedHtml = encodeURIComponent(htmlResponse);
+          router.push(`/feature-output?html=${encodedHtml}`);
+
         }
 
 
-        const htmlResponse = response.data;
-        const encodedHtml = encodeURIComponent(htmlResponse);
-        router.push(`/feature-output?html=${encodedHtml}`);
       }
       setisformsubmitting(false);
     } catch (error) {
