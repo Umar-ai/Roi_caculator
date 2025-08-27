@@ -62,7 +62,7 @@ export default function SignUppage() {
 
   return (
     <div className="flex justify-center items-center min-h-screen ">
-      <div className="w-full max-w-md p-8 space-y-8 border-2  rounded-lg mb-22 shadow-md">
+     <div className="w-[95%] sm:w-full max-w-sm sm:max-w-md p-6 sm:p-8 space-y-6 sm:space-y-8 border rounded-lg shadow-md bg-white/5 backdrop-blur">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold tracking-tight  lg:text-5xl ">
             Sign Up
