@@ -31,11 +31,7 @@ export default function FeatureForm() {
       device_Price: "",
     },
   });
-  useEffect(() => {
-    if (param.problem) {
-      toast("Error",{richColors:true,description:"Something went wrong try again"})
-    }
-  }, []);
+
   const roiCaluclation = async (data: z.infer<typeof roiSchema>) => {
     try {
       setisformsubmitting(true);
@@ -44,6 +40,19 @@ export default function FeatureForm() {
         data
       );
       if (response) {
+        if (
+          !response.data ||
+          typeof response.data !== "string" ||
+          (!response.data.includes("<html") &&
+            !response.data.includes("<iframe"))
+        ) {
+          toast("Error",{description:"Something went wrong while submiiting the form please try again"})
+          console.log(response.data.data);
+          console.log(response.data);
+          console.log(response);
+        }
+
+
         const htmlResponse = response.data;
         const encodedHtml = encodeURIComponent(htmlResponse);
         router.replace(`/feature-output?html=${encodedHtml}`);
