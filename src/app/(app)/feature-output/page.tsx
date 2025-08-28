@@ -50,10 +50,10 @@ export default function ResultsPage() {
   return (
     <div className="flex justify-center  items-center min-h-screen  bg-white text-white">
       <div>
-        {/* <h1 className="text-3xl font-bold text-center text-white">Your Results</h1> */}
-        <div 
-          className="p-4  rounded-lg overflow-x-auto"
-          dangerouslySetInnerHTML={{ __html: htmlContent }} 
+        
+          <iframe
+          srcDoc={htmlContent}
+          className="sm:w-[100vw] w-full h-[90vh] border-none rounded-lg"
         />
       </div>
     </div>
