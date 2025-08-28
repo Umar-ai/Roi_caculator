@@ -34,14 +34,14 @@ function Navbar() {
         <div className="hidden md:flex gap-10 items-center">
           {session ? (
             <>
+              <Link href={"/"}>
+                <button className="hover:underline text-slate-100">Home</button>
+              </Link>
               <Link href={"/feature"}>
                 <button className="hover:underline text-slate-100">Feature</button>
               </Link>
-              {/* <Link href={'/pricing'}>
-              <button className="text-slate-100">Pricing</button>
-              </Link> */}
+            
 
-              {/* <button className="text-slate-100">Dummy</button> */}
               <Button
                 onClick={signingOut}
                 className="font-bold bg-slate-100 text-black"
@@ -75,13 +75,17 @@ function Navbar() {
         <div className="md:hidden mt-4 flex flex-col gap-4 bg-gray-800 p-4 rounded-lg">
           {session ? (
             <>
+              <Link href={"/"}>
+                <button className="text-left text-slate-100 hover:underline">
+                  Home
+                </button>
+              </Link>
               <Link href={"/feature"}>
                 <button className="text-left text-slate-100 hover:underline">
                   Feature
                 </button>
               </Link>
-              {/* <button className="text-left text-slate-100">Pricing</button> */}
-              {/* <button className="text-left text-slate-100">Support</button> */}
+              
               <Button
                 onClick={signingOut}
                 className="w-full font-bold bg-slate-100 text-black"

@@ -43,7 +43,7 @@ export default function Loginpage() {
   const onlogin = async (data: z.infer<typeof loginInSchema>) => {
     try {
       setisformsubmitting(true);
-      const response = await signIn("credentials",{redirect:false,identifier:data.identifier,password:data.password});
+      const response = await signIn("credentials",{identifier:data.identifier,password:data.password});
       console.log(response)
       if (response?.status) {
         if(response.status>200){
@@ -58,7 +58,6 @@ export default function Loginpage() {
             toast("Login Successfull", {
               description: "User logged in successfully",
             });
-            router.replace('/home');
           }
 
         
