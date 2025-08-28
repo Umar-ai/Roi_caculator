@@ -4,16 +4,13 @@ This project is a smart **ROI calculator** built to help **refurbishers** make d
 
 ---
 
-## 🧩 What It Does
-
-- Takes device model and defect info as input
-- Fetches current market prices using:
-  - **eBay API** 📦
-  - **Tavily** (web scraping tool) 🌐
-- Uses **Gemini AI** via **LangChain** to:
-  - Summarize ROI
-  - Recommend whether to sell as refurbished or used
-- Outputs a clean markdown report with profit/loss for both options
+## Features  
+- Input device model and defects directly via a simple form  
+- Fetches **real-time market prices** from trusted sources  
+- AI-powered decision support to compare **refurbished vs used resale value**  
+- Generates a **profit/loss ROI summary** in clear, structured markdown format  
+- Provides actionable recommendations for refurbishers to maximize revenue  
+- Integrates seamlessly with **n8n workflows** for automation  
 
 ---
 
@@ -39,13 +36,13 @@ This project is a smart **ROI calculator** built to help **refurbishers** make d
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/Umar-ai/Roi_calculator.git
+git clone https://github.com/KeenSight-AI-Demo-Apps/Roi_calculator.git
 cd Roi_calculator
 
 npm install
 
 
-4. Import n8n workflow
+4. Import n8n workflow from n8n.json file
 Open your n8n instance.
 
 Paste the contents of workflows/n8n.json into a new workflow.
@@ -53,9 +50,7 @@ Paste the contents of workflows/n8n.json into a new workflow.
 Update any required credentials (e.g., API Keys).
 
 5. Run the server
-bash
-Copy
-Edit
+
 npm run dev
 
 👨‍💻 Author
